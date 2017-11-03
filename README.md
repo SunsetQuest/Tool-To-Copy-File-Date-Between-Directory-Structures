@@ -19,8 +19,11 @@ A tool to copy the file date/time from one directory structure(or tree) to anoth
 ## Description 
 Given two nearly identical folder trees, CopyDirDates will copy over just the file dates from the source directory to the destination directory. Files not found in the source are skipped.
 
-
 ## Example 
     CopyDirDates "C:\My Folder1" D:\Folder2 -CopyAll -Preview
+
+## Download
+[Download Zip](https://github.com/SunsetQuest/Tool-To-Copy-File-Date-Between-Directory-Structures/raw/master/CopyDirDatesTool.zip)  (SHA1: 03A873FFBC248FBEF91AF08CF116C6D4B12CED6B)
+
 
 
