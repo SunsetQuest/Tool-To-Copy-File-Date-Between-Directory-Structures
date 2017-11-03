@@ -17,7 +17,7 @@ class Program
             WriteLine(@"CopyDates ""Source Directory"" ""Destination Directory"" -CopyModified -CopyCreated -CopyAccessed -ExcludeSubFolders -Preview");
             return;
         }
-        bool preview = false, copyCreated = false, copyModified = false, copyAccessed = false,;
+        bool preview = false, copyCreated = false, copyModified = false, copyAccessed = false;
         SearchOption subfolders = SearchOption.AllDirectories;
         args = Array.ConvertAll(args, x => x.ToLower());
         string sourceFolder = args[0];
