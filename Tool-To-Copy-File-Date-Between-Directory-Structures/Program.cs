@@ -1,6 +1,18 @@
-﻿// Created by Ryan White on 11/2/2017 for the world.
+﻿/* Copyright 2017 Ryan S. White  
+https://opensource.org/licenses/MIT 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
+documentation files (the "Software"), to deal in the Software without restriction, including without 
+limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions 
+of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED 
+TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+DEALINGS IN THE SOFTWARE. */
 
-// A tool to copy the file date/time from one directory structure(or tree) to another. 
+// Description: A tool to copy the file date/time from one directory structure(or tree) to another. 
 // It's a script to copy the last created/modified/accessed times from one folder to a maching folder.
 
 using System;
@@ -14,7 +26,21 @@ class Program
         // Let's process the input parameters  
         if (args.Length < 2)
         {
-            WriteLine(@"CopyDates ""Source Directory"" ""Destination Directory"" -CopyModified -CopyCreated -CopyAccessed -ExcludeSubFolders -Preview");
+            WriteLine("USAGE: CopyDirDates \"Source Directory\" \"Destination Directory\" [Options]\n\n"+
+                        "Description: Given two nearly identical folder trees, CopyDirDates will copy\n"+
+                        "             over just the file dates from the source directory to the \n"+
+                        "             destination directory. Files not found in the source are skipped.\n"+
+                        "Options: \n"+
+                        "  \"Source Directory\"   The directory where to get the dates.\n" +
+                        "  \"Dest. Directory\"    The directory where the dates will be applied to.\n" +
+                        "                       Quotes required if path has spaces.\n" +
+                        "  -CopyModified        Copies over the modified datetime.\n" +
+                        "  -CopyCreated         Copies over the created datetime.\n" +
+                        "  -CopyAccessed        Copies over the last Access datetime.\n" +
+                        "  -CopyAll             Same as: -CopyModified -CopyCreated -CopyAccessed\n" +
+                        "  -ExcludeSubFolders   Excludes subfolders (Top Directory Only)\n" +
+                        "  -Preview             Only displays the changes would be made applied.\n\n"+
+                        "Example: CopyDirDates \"C:\\My Folder1\" D:\\Folder2 -CopyAll -Preview\n");
             return;
         }
         bool preview = false, copyCreated = false, copyModified = false, copyAccessed = false;
@@ -30,6 +56,7 @@ class Program
                 case "-copycreated": copyCreated = true; break;
                 case "-copymodified": copyModified = true; break;
                 case "-copyaccessed": copyAccessed = true; break;
+                case "-copyall": copyCreated = true; copyModified = true; copyAccessed = true; break;
                 case "-excludesubfolders": subfolders = SearchOption.TopDirectoryOnly; break;
                 default: WriteLine(" Error - Unknown param: '" + args[i] + "'"); return;
             }
@@ -60,7 +87,7 @@ class Program
                 {
                     DateTime createdTime = File.GetCreationTime(sourceFile);
                     if (preview)
-                        WriteLine("Copy Created(" + createdTime + ")  " + sourceFile + " -> " + createdTime);
+                        WriteLine("Copy Created(" + createdTime + ")  " + sourceFile + " -> " + destFile);
                     else
                         File.SetCreationTime(destFile, createdTime);
                 }

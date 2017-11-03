@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{62ABD03F-95BF-49BE-862A-B4FF3240FDA9}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Tool_To_Copy_File_Date_Between_Directory_Structures</RootNamespace>
-    <AssemblyName>Tool-To-Copy-File-Date-Between-Directory-Structures</AssemblyName>
+    <RootNamespace>CopyDirDates</RootNamespace>
+    <AssemblyName>CopyDirDates</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
